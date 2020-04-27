@@ -1,0 +1,12 @@
+{
+    "SipTrunk" : {
+    "ExternalTrunkName" :"tutorial sample2",
+    "SipServers"        : "devorgsiptrunk.pstn.twilio.com",
+    "Realm"             : "sip.twilio.com",
+    "Password"          : "DevOrg12345!",
+    "Address"           : "+15804405541",
+    "CallingName"       : "DOPTName1",
+    "UserName"          : "doptCredential1"
+    }
+    
+}
