@@ -1,0 +1,53 @@
+---
+title: Proviaioning Telephony
+description: This tutorial will automate configuration to connect a 3rd party SIP Trunk
+categories:
+- Trunk
+- Telephony
+steps:
+- title: Introduction
+  content: |
+    This tutorial walks through the steps on how to set up BYOC Cloud in Genesys Cloud using API calls. In this tutorial, it is assumed that the user has third-party carier or a device over the public internet, purchased a phone number and created a SIP Trunk, these information will be use on the later steps of this tutorial.
+
+- title: JSON Files and Variables
+  content: |
+
+- title: Authentication
+  content: |
+
+- title: Check BYOC Feature
+  content: |
+
+- title: Create Location
+  content: |
+
+- title: Check AWS And Create Site
+  content: |
+
+- title: Create Trunk
+  content: |
+
+- title: Set Outbound Route
+  content: |
+
+
+languages:
+  nodejs:
+    displayName: NodeJS
+    steps:
+    - file: "nodejs/index.js"
+      highlight: "0-348"
+    - file: "nodejs/index.js"
+      highlight: "0-15"
+    - file: "nodejs/index.js"
+      highlight: "16-27"
+    - file: "nodejs/index.js"  
+      highlight: "28-45"
+    - file: "nodejs/index.js"
+      highlight: "46-75"
+    - file: "nodejs/index.js"
+      highlight: "76-143"
+    - file: "nodejs/index.js"
+      highlight: "144-293"
+    - file: "nodejs/index.js"
+      highlight: "294-348"
