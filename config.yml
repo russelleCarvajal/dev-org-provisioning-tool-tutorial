@@ -17,6 +17,44 @@ steps:
     For more information about carrier requirements, check Genesys Resource Center article [Carrier requirements for BYOC Cloud](https://help.mypurecloud.com/articles/carrier-requirements-byoc-cloud/) 
     
     To test the code in the tutorial, you will need a JSON file where you will input the information needed to run the program. In this tutorial the JSON file is named input-template.json. See sample json file below:
+      ```{"language":"json"}
+    {
+      "client_id":"", // Genesys Cloud client id
+      "client_secret":"", // Genesys Cloud client secret
+
+      "location": {
+          "name":"", // Asign any location name
+          "number":"", // Phone number
+          "street1":"", 
+          "city":"",
+          "state":"",
+          "zipcode":"",
+          "country":"", // Alpha-2 code format
+          "countryFullName":"" 
+      },
+
+      "site": {
+          "name":"", // Assign any site name
+          "timeZone":"" // ex: America/New_York
+      },
+
+      "SipTrunk": {
+          "ExternalTrunkName" :"",
+          "SipServers":"",
+          "Realm":"",
+          "Password":"",
+          "Address":"",
+          "CallingName":"",
+          "UserName":"",
+          "instance": []
+      },
+
+      "outboundRoute": {
+          "name": "" // Assign any outbound route name
+      }
+    }
+    ```
+      
 - title: JSON Files and Variables
   content: |
 
@@ -28,16 +66,18 @@ steps:
 
 - title: Create Location
   content: |
-    Create a location in Genesys Cloud by calling [locationsApi.postLocations()](https://developer.mypurecloud.com/api/rest/client-libraries/javascript/LocationsApi.html#postLocations) function and save the location information in a global variable.
+    Create a location in Genesys Cloud by calling [locationsApi.postLocations()](https://developer.mypurecloud.com/api/rest/client-libraries/javascript/LocationsApi.html#postLocations) function and save the return location data in a global variable.
 - title: Check AWS And Create Site
   content: |
-    Find the default Edge Group by calling [telephonyProvidersEdgeApi.getTelephonyProvidersEdgesSites()](https://developer.mypurecloud.com/api/rest/client-libraries/javascript/TelephonyProvidersEdgeApi.html#getTelephonyProvidersEdgesSites) function and finding "PureCloud Voice – AWS". Save the return data then create a new site with [telephonyProvidersEdgeApi.postTelephonyProvidersEdgesSites()](https://developer.mypurecloud.com/api/rest/client-libraries/javascript/TelephonyProvidersEdgeApi.html#postTelephonyProvidersEdgesSites) function.
+    In PureCloud Admin > Telephony > Edge Groups, a default Edge Group should e available. Find the default Edge Group by calling [telephonyProvidersEdgeApi.getTelephonyProvidersEdgesSites()](https://developer.mypurecloud.com/api/rest/client-libraries/javascript/TelephonyProvidersEdgeApi.html#getTelephonyProvidersEdgesSites) function and find "PureCloud Voice – AWS". Then save the return data then create a new site with [telephonyProvidersEdgeApi.postTelephonyProvidersEdgesSites()](https://developer.mypurecloud.com/api/rest/client-libraries/javascript/TelephonyProvidersEdgeApi.html#postTelephonyProvidersEdgesSites) function.
 - title: Create Trunk
   content: |
 
 - title: Set Outbound Route
   content: |
-    Lastly, update the site's Outboud Route tab by deleting the created default External Trunk. Find the External trunk using [telephonyProvidersEdgeApi.getTelephonyProvidersEdgesSiteOutboundroutes()](https://developer.mypurecloud.com/api/rest/client-libraries/javascript/TelephonyProvidersEdgeApi.html#getTelephonyProvidersEdgesSiteOutboundroutes) and delete it with [telephonyProvidersEdgeApi.deleteTelephonyProvidersEdgesOutboundroute()](https://developer.mypurecloud.com/api/rest/client-libraries/javascript/TelephonyProvidersEdgeApi.html#deleteTelephonyProvidersEdgesOutboundroute) and replace it with the previously created trunk using [telephonyProvidersEdgeApi.postTelephonyProvidersEdgesSiteOutboundroutes()](https://developer.mypurecloud.com/api/rest/client-libraries/javascript/TelephonyProvidersEdgeApi.html#postTelephonyProvidersEdgesSiteOutboundroutes).
+    Lastly, update the site's Outboud Route tab and add the created trunk on the External Trunk. In this tutorial, the default Outbound Route will be deleted. 
+    
+    First, find the default trunk using [telephonyProvidersEdgeApi.getTelephonyProvidersEdgesSiteOutboundroutes()](https://developer.mypurecloud.com/api/rest/client-libraries/javascript/TelephonyProvidersEdgeApi.html#getTelephonyProvidersEdgesSiteOutboundroutes) and delete it with [telephonyProvidersEdgeApi.deleteTelephonyProvidersEdgesOutboundroute()](https://developer.mypurecloud.com/api/rest/client-libraries/javascript/TelephonyProvidersEdgeApi.html#deleteTelephonyProvidersEdgesOutboundroute). Then create a new Outbound Route and assign the previously created trunk using [telephonyProvidersEdgeApi.postTelephonyProvidersEdgesSiteOutboundroutes()](https://developer.mypurecloud.com/api/rest/client-libraries/javascript/TelephonyProvidersEdgeApi.html#postTelephonyProvidersEdgesSiteOutboundroutes).
 
 languages:
   nodejs:
