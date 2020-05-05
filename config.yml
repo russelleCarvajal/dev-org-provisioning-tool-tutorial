@@ -1,6 +1,6 @@
 ---
 title: Proviaioning Telephony
-description: This tutorial will automate configuration to connect a 3rd party SIP Trunk
+description: This tutorial implements BYOC Cloud solution with a cloud-based carrier 
 categories:
 - Trunk
 - Telephony
