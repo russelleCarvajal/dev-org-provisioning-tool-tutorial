@@ -291,16 +291,16 @@ function createTrunk() {
         });  
 };
 
+// Get list of Outbound Routes and delete it
 function siteOutboundroutes(trunkData) {
     let opts = { 
         pageSize: 25,
         pageNumber: 1
     };
-    // Get list of outbound routes
     telephonyProvidersEdgeApi.getTelephonyProvidersEdgesSiteOutboundroutes(siteId, opts)
         .then((data) => {
             let routeEntities = data.entities;   
-            // Delete each routes 
+            // Delete default route
             routeEntities.forEach(entity => {
                 let entityId = entity.id;
                 telephonyProvidersEdgeApi.deleteTelephonyProvidersEdgesOutboundroute(entityId)
@@ -323,7 +323,7 @@ function siteOutboundroutes(trunkData) {
 // Set up outbound routes in the site created 
 function createOutboundRoute(trunkData) {    
     let body = {
-        name: inputTemplate.outboundRoute.name, // ex: My OutboundRoute Name
+        name: "My Outbound Route",
         classificationTypes: ['National', 'International'], // leveraged for outbound calls to national or international numbers
         enabled: true,
         distribution: '',
