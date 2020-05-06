@@ -37,7 +37,6 @@ steps:
       "site": {
           "name":"", // Assign any site name
           "timeZone":"" // ex: America/New_York
-      },
       
       "SipTrunk": {
           "ExternalTrunkName" :"",
