@@ -10,6 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "express": "^4.17.1",
+    "inquirer": "^7.1.0",
     "purecloud-platform-client-v2": "^77.0.0"
   },
   "devDependencies": {
