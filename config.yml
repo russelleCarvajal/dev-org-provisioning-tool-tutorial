@@ -99,4 +99,7 @@ languages:
     - file: "nodejs/index.js"
       highlight: "139-287"
     - file: "nodejs/index.js"
-      highlight: "289-331"
+<<<<<<< Updated upstream
+=======
+      highlight: "294-348"
+>>>>>>> Stashed changes
