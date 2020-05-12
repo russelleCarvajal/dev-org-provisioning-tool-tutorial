@@ -4,7 +4,7 @@ const inputTemplate = require('./input-template.json');
 const platformClient = require('purecloud-platform-client-v2');
 const client = platformClient.ApiClient.instance;
 // Instantiate APIs
-const AuthorizationApi = new platformClient.AuthorizationApi();
+const authorizationApi = new platformClient.AuthorizationApi();
 const telephonyProvidersEdgeApi = new platformClient.TelephonyProvidersEdgeApi();
 const locationsApi = new platformClient.LocationsApi();
 
@@ -26,7 +26,7 @@ client.loginClientCredentialsGrant(CLIENT_ID, CLIENT_SECRET)
 
 // Check if BYOC is in the list of enabled products
 function checkBYOC() {
-    AuthorizationApi.getAuthorizationProducts()
+    authorizationApi.getAuthorizationProducts()
         .then((data) => {
             console.log(`getAuthorizationProducts success! data: ${JSON.stringify(data, null, 2)}`);
             if (data.entities.find((entity) => entity.id === 'byoc') != undefined) {
@@ -62,7 +62,7 @@ function createLocation() {
     locationsApi.postLocations(body)
         .then((data) => {
             console.log(`postLocations success! data: ${JSON.stringify(data, null, 2)}`);
-            console.log('Location Created!');
+            console.log('Location successfully created!');
             locationInfo = data;
             getEdgeSite();
         })
@@ -126,7 +126,7 @@ function createSite(awsItem) {
     telephonyProvidersEdgeApi.postTelephonyProvidersEdgesSites(body)
         .then((data) => {
             console.log(`postTelephonyProvidersEdgesSites success! data: ${JSON.stringify(data, null, 2)}`);
-            console.log('Site Created!');
+            console.log('Site successfully created!');
             siteId = data.id; // save site id as global id
             createTrunk();
         })
@@ -322,7 +322,7 @@ function createOutboundRoute(trunkData, outboundRouteId) {
         .then((data) => {
             console.log(`postTelephonyProvidersEdgesSiteOutboundroutes success! data: ${JSON.stringify(data, null, 2)}`);
             console.log('Outbound route updated!');
-            console.log('Process Completed!');
+            console.log('Process completed!');
         })
         .catch((err) => {
             console.log('There was a failure calling postTelephonyProvidersEdgesSiteOutboundroutes');

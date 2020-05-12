@@ -14,9 +14,9 @@ steps:
     * Have a publicly routable IP address or host name
       * Carriers must fully support Record-Routing as required by RFC 3261 to ensure proper routing of sequential SIP requests.
     
-    For more information about carrier requirements, check Genesys Resource Center article [Carrier requirements for BYOC Cloud](https://help.mypurecloud.com/articles/carrier-requirements-byoc-cloud/) 
+    For more information about carrier requirements, check Genesys Resource Center article [Carrier requirements for BYOC Cloud](https://help.mypurecloud.com/articles/carrier-requirements-byoc-cloud/).
     
-    To test the code in the tutorial, A JSON file is needed to provide the required inputs needed to run the program. In this tutorial the JSON file is titled input-template.json.
+    To test the code in the tutorial, a JSON file is needed to provide the input needed to run the program. In this tutorial, the JSON file is titled input-template.json.
 
 - title: JSON Files and Variables
   content: |
@@ -66,11 +66,13 @@ steps:
 
 - title: Create Location
   content: |
-    Create a Location in Genesys Cloud and save the return location data in a global variable.
+    Create a location in Genesys Cloud  by calling [locationsApi.postLocations()](https://developer.mypurecloud.com/api/rest/client-libraries/javascript/LocationsApi.html#postLocations) function and save the returned location data in a global variable.
 
 - title: Create Site
   content: |
-    To Create a new Site Two information is needed, one is the Location information and second is a Default Edge Group. The Location data is already saved to a variable. Now for the Edge Group. In PureCloud Admin > Telephony > Edge Groups, a default Edge Group should be available. Get the default Edge Group information and find "PureCloud Voice – AWS".
+    To create a new site two pieces of information is needed. One is the location information, which is saved in a global variable and second is a default edge group which is found in PureCloud Admin > Telephony > Edge Groups.
+
+    Get the default edge group by calling [telephonyProvidersEdgeApi.getTelephonyProvidersEdgesSites()](https://developer.mypurecloud.com/api/rest/client-libraries/javascript/TelephonyProvidersEdgeApi.html#getTelephonyProvidersEdgesSites) function and look for "PureCloud Voice – AWS", save the returned data and proceed to creating a new site with [telephonyProvidersEdgeApi.postTelephonyProvidersEdgesSites()](https://developer.mypurecloud.com/api/rest/client-libraries/javascript/TelephonyProvidersEdgeApi.html#postTelephonyProvidersEdgesSites) function.
 
 - title: Create Trunk
   content: |
@@ -78,7 +80,8 @@ steps:
 
 - title: Set Outbound Route
   content: |
-    Lastly, get the Outbound Route created by default when the Site was created, then update the External Trunk value with the previously created trunk.
+    Lastly, get the Outbound Route created by default when the site was created with [telephonyProvidersEdgeApi.getTelephonyProvidersEdgesSiteOutboundroutes()](https://developer.mypurecloud.com/api/rest/client-libraries/javascript/TelephonyProvidersEdgeApi.html#getTelephonyProvidersEdgesSiteOutboundroutes), then update the external trunk value with [telephonyProvidersEdgeApi.postTelephonyProvidersEdgesSiteOutboundroutes()](https://developer.mypurecloud.com/api/rest/client-libraries/javascript/TelephonyProvidersEdgeApi.html#putTelephonyProvidersEdgesEdgegroupEdgetrunkbase).
+ the previously created trunk.
 
 languages:
   nodejs:
