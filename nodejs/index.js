@@ -278,7 +278,7 @@ function createTrunk() {
         .then((data) => {
             console.log(`postTelephonyProvidersEdgesTrunkbasesettings success! data: ${JSON.stringify(data, null, 2)}`);
             console.log('Trunk was successfully created!');
-            siteOutboundroutes(data);
+            siteOutboundRoutes(data);
         })
         .catch((err) => {
             console.log('There was a failure calling postTelephonyProvidersEdgesTrunkbasesettings');
@@ -287,7 +287,7 @@ function createTrunk() {
 }
 
 // Find default outbound route of the created site then save the ID reference
-function siteOutboundroutes(trunkData) {
+function siteOutboundRoutes(trunkData) {
     const opts = {
         pageSize: 25,
         pageNumber: 1,
